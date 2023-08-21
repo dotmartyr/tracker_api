@@ -129,11 +129,11 @@ module TrackerApi
       #
       # @param [Hash] params
       # @return [Array[Comment]]
-      def comments(reload: false)
+      def comments(reload: false, params: {})
         if !reload && @comments.present?
           @comments
         else
-          @comments = Endpoints::Comments.new(client).get(project_id, story_id: id)
+          @comments = Endpoints::Comments.new(client).get(project_id, story_id: id, params: params)
         end
       end
 
